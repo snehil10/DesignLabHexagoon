@@ -1,0 +1,19 @@
+
+.w3-bar {
+    font-family: "Montserrat", sans-serif
+}
+
+.w3-top a {
+    text-decoration: none !important;
+    color: white;
+}
+
+.w3-top a:hover {
+    background-color:teal !important;
+    color: white !important;
+}
+
+
+.navbar-right {
+    float: right;
+}
