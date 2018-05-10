@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 17, 2018, 12:26:15 PM
+    Author     : lenovo
+*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#main_page_header {
+    background-image: url('1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#headerMain button:hover {
+    background-color:teal !important;
+    color: white !important;
+}
+
+#login_modal #login:hover {
+    background-color: teal !important;
+    color: white !important;
+}
+
+#login_modal a {
+    text-decoration: none;
+}
+
+#login_modal #cancel:hover {
+    background-color: red !important;
+    color: white !important;
+}

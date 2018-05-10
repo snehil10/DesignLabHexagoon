@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 17, 2018, 8:01:51 PM
+    Author     : lenovo
+*/
+
+
+#student_info {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#info td {
+    font-family: 'Open Sans', sans-serif;
+    color: grey;
+    font-size: 17px;
+}

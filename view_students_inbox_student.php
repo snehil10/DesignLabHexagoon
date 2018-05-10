@@ -1,8 +1,8 @@
 <?php
 session_start();
 include('connection.php');
-$teacher_id = $_GET['q'];
-$sql = "select * from teacher where username='" . $teacher_id . "'";
+$student_id = $_GET['q'];
+$sql = "select * from student where username='" . $student_id . "'";
 $result = mysqli_query($con, $sql);
 if (!$result) {
     echo mysqli_error($con);
@@ -19,7 +19,7 @@ if (!$result) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
         <link rel="stylesheet" type="text/css" href="css/navbar_style.css">
@@ -32,16 +32,16 @@ if (!$result) {
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
                 <div class='navbar-right'>
-                    <a href="view_results.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View Results</a>
-                    <a href="student_display.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Dashboard</a>
+                    <a href="teacher_display.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Dashboard</a>
+                    <a href="inbox_teacher.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inbox</a>
                     <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
                 </div>
             </div>
 
             <!-- Navbar on small screens -->
             <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-                <a href="view_results.php" class="w3-bar-item w3-button w3-padding-large">View Results</a>
-                <a href="student_display.php" class="w3-bar-item w3-button w3-padding-large">Dashboard</a>
+                <a href="teacher_display.php" class="w3-bar-item w3-button w3-padding-large">Dashboard</a>
+                <a href="inbox_teacher.php" class="w3-bar-item w3-button w3-padding-large">Inbox</a>
                 <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Log Out</a>
             </div>
         </div>
@@ -53,7 +53,7 @@ if (!$result) {
                 </header>
                 <div id="messages">
                     <?php
-                    $sql = "select * from message where sender_id in ('" . $_SESSION['username'] . "','" . $teacher_id . "') and receiver_id in ('" . $_SESSION['username'] . "','" . $teacher_id . "') and message_type='chat'";
+                    $sql = "select * from message where sender_id in ('" . $_SESSION['username'] . "','" . $student_id . "') and receiver_id in ('" . $_SESSION['username'] . "','" . $student_id . "') and message_type='chat'";
                     $result = mysqli_query($con, $sql);
                     if (!$result) {
                         echo mysqli_error($con);
@@ -87,7 +87,7 @@ if (!$result) {
                         <textarea rows="3" cols="110" placeholder="Write Message here" id="message"></textarea>
                     </div>
                     <div class="col-sm-2">
-                        <button <?php echo "id='" . $teacher_id . "'" ?> onclick="send(this.id)" class='w3-button w3-teal' style="border-radius: 0; float:right"><span style="font-size: 30px"class="glyphicon glyphicon-send glyphicon-lg"></span></button>
+                        <button <?php echo "id='" . $student_id . "'" ?> onclick="send(this.id)" class='w3-button w3-teal' style="border-radius: 0; float:right"><span style="font-size: 30px"class="glyphicon glyphicon-send glyphicon-lg"></span></button>
                     </div>
                 </footer>
             </div>
