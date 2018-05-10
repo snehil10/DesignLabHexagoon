@@ -96,7 +96,8 @@
                                     echo mysqli_error($con);
                                     exit();
                                 } else {
-                                    $row = mysqli_fetch_assoc($result1);
+                                   while( $row = mysqli_fetch_assoc($result1))
+								   {
                                     echo "<tr>
 										<td>" . $row['course_id'] . "</td>
 										<td>" . $row['course_name'] . "</td>";
@@ -110,6 +111,7 @@
                                         $row2 = mysqli_fetch_assoc($res2);
                                         echo"<td>" . $row2[$row['course_id']] . "</td><td>$full_marks</td></tr>";
                                     }
+								   }
                                 }
                             }
                             ?>

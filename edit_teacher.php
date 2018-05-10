@@ -67,7 +67,7 @@
                         <input class="w3-input w3-margin-bottom" type="text" placeholder="" <?php echo "value='".$name."'";?> disabled name="name">
                         <br>
                         <label><b>Phone Number</b></label>
-                        <input class="w3-input w3-margin-bottom" type="number" placeholder="" <?php echo "value='".$phone_number."'";?> name="phone">
+                        <input class="w3-input w3-margin-bottom" type="text" placeholder="" <?php echo "value='".$phone_number."'";?> name="phone">
                         <br>
                         <label><b>Email-id</b></label>
                         <input class="w3-input w3-margin-bottom" type="email" placeholder="" <?php echo "value='".$email."'";?> name="email">

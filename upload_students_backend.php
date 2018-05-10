@@ -51,7 +51,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 		$email_id=trim($allDataInSheet[$i]["M"]);
 		$ph_no=trim($allDataInSheet[$i]["N"]);
 		$date_of_birth=trim($allDataInSheet[$i]["O"]);
-		$year="none";
+		$year=trim($allDataInSheet[$i]["W"]);
 		$address=trim($allDataInSheet[$i]["P"]);
 		$password=trim($allDataInSheet[$i]["Q"]);
 		$picture=trim($allDataInSheet[$i]["R"]);
@@ -77,7 +77,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 				exit();
 			}
 			else{
-				echo "yes";
+				header("location:success.php");
 			}
 		}
 		}

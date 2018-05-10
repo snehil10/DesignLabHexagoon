@@ -26,7 +26,7 @@ if(isset($_POST['submit']))
 			exit();
 		}
 		else{
-			echo "Done";
+			header("location:success.php");
 		}
 	}
 }

@@ -51,8 +51,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 			$result=mysqli_query(con,$sql);
 			if(!$result)
 			{
-				echo mysqli_error($con);
-				die();
+				header("location:failure.php");
 			}
 			else
 			{
@@ -62,12 +61,11 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 					$result2=mysqli_query($con,$sql2);
 					if(!$result2)
 					{
-						echo mysqli_error($con);
-						die();
+						header("location:failure.php");
 					}
 					else
 					{
-						echo "YES";
+						header("location:success.php");
 					}
 				}
 				else
@@ -76,12 +74,11 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 					$result2=mysqli_query($con,$sql2);
 					if(!$result2)
 					{
-						echo mysqli_error($con);
-						die();
+						header("location:failure.php");
 					}
 					else
 					{
-						echo "YES";
+						header("location:success.php");
 					}
 				}
 			}

@@ -7,10 +7,12 @@ if (isset($_COOKIE['user'])) {
     $_SESSION['username'] = $_COOKIE['user'];
     if ($x[0] == 'st')
         header('location:student_display.php');
-    if ($x[0] == 't')
+    elseif ($x[0] == 't')
         header('location:teacher_display.php');
-    if ($x[0] == 'pt')
+    elseif ($x[0] == 'pt')
         header('location:parent_display.php');
+	else
+		header('location:admin_uploadstudents.php');
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +44,7 @@ if (isset($_COOKIE['user'])) {
             </div>
 
             <!-- Navbar on small screens -->
-            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <div id="navDemo" class="w3-bar-block w3-teal w3-hide w3-hide-large w3-hide-medium w3-large">
                 <a href="#about" class="w3-bar-item w3-button w3-padding-large">About</a>
                 <a href="#login_modal" onclick="document.getElementById('login_modal').style.display = 'block'" class="w3-bar-item w3-button w3-padding-large">Log In</a>
                 <a href="#admin_modal" onclick="document.getElementById('admin_modal').style.display = 'block'" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Admin Corner</a>

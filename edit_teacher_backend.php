@@ -9,11 +9,10 @@ $sql="update teacher set email_id='".$email."',mobile_number='".$mobile_no."',pa
 $result=mysqli_query($con,$sql);
 if(!$result)
 {
-	echo mysqli_error($con);
-	exit();
+	header("location:faliure.php");
 }
 else
 {
-	echo "update successful";
+	header("location:success.php");
 }
 ?>

@@ -1,3 +1,18 @@
+<?php
+session_start();
+include('connection.php');
+if(!isset($_SESSION['username']))
+	header("location:index.php");
+$z=explode("_",$_SESSION['username']);
+if($z[0]=='st')
+	$link="student_display.php";
+elseif($z[0]=='pt')
+	$link="parent_display.php";
+elseif($z[0]=='t')
+	$link="teacher_display.php";
+else
+	$link="admin_uploadstudents.php"
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,10 +33,8 @@
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
                 <div class='navbar-right'>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View Results</a>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inbox</a>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact Teacher</a>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
+                    <a <?php echo "href='".$link."'";?> class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Dashboard</a>
+                    <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
                 </div>
             </div>
 
