@@ -51,7 +51,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 		$email_id=trim($allDataInSheet[$i]["M"]);
 		$ph_no=trim($allDataInSheet[$i]["N"]);
 		$date_of_birth=trim($allDataInSheet[$i]["O"]);
-		$year="none";
+		$year=trim($allDataInSheet[$i]["W"]);
 		$address=trim($allDataInSheet[$i]["P"]);
 		$password=trim($allDataInSheet[$i]["Q"]);
 		$picture=trim($allDataInSheet[$i]["R"]);
@@ -60,7 +60,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 		$parents_phone_no=trim($allDataInSheet[$i]["T"]);
 		$parents_name=trim($allDataInSheet[$i]["U"]);
 		$parents_password=trim($allDataInSheet[$i]["V"]);
-		$sql1="insert into student (username,enroll_id,univ_roll,reg_id,class_roll,name,parents_id,semester,stream,section,email_id,ph_no,date_of_birth,year,address,password,picture,year_of_admission) values ('$username','$enroll_id','$univ_roll','$reg_id','$class_roll','$name','$parents_id','$semester','$stream','$section','$email_id','$ph_no','$date_of_birth','$year','$address','$password','$picture','$year_of_admission')";
+		$sql1="insert into student (username,enroll_id,univ_roll,reg_id,class_roll,name,parents_id,semester,stream,section,email_id,mobile_number,date_of_birth,year,address,password,picture,year_of_admission) values ('$username','$enroll_id','$univ_roll','$reg_id','$class_roll','$name','$parents_id','$semester','$stream','$section','$email_id','$ph_no','$date_of_birth','$year','$address','$password','$picture','$year_of_admission')";
 		$result1=mysqli_query($con,$sql1);
 		if(!$result1)
 		{
@@ -69,7 +69,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 		}
 		else
 		{
-			$sql2="INSERT INTO parents (username,student_id,email_id,phone_no,name,password) VALUES ('$parents_id','$username','$parents_email_id','$parents_phone_no','$parents_name','$parents_password')";
+			$sql2="INSERT INTO parents (username,student_id,email_id,mobile_number,name,password) VALUES ('$parents_id','$username','$parents_email_id','$parents_phone_no','$parents_name','$parents_password')";
 			$result2=mysqli_query($con,$sql2);
 			if(!$result2)
 			{
@@ -77,7 +77,7 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 				exit();
 			}
 			else{
-				echo "yes";
+				header("location:success.php");
 			}
 		}
 		}

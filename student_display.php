@@ -1,31 +1,27 @@
 
 <?php
-  session_start();
-  include('connection.php');
-  $sql="select email_id,stream,enroll_id,section,mobile_number,univ_roll,reg_id,name,semester,class_roll,address,year from student where username='".$_SESSION['username']."'";
-  $res=mysqli_query($con,$sql);
-  if(!$res)
-  {
-  echo "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
-  exit;
-  }
-  else
-  {
-  $row=mysqli_fetch_assoc($res);
-  $name=$row['name'];
-  $email=$row['email_id'];
-  $univ_id=$row['univ_roll'];
-  $section=$row['section'];
-  $stream=$row['stream'];
-  $enroll_id=$row['enroll_id'];
-  $mobile_number=$row['mobile_number'];
-  $reg_id=$row['reg_id'];
-  $semester=$row['semester'];
-  $class_roll=$row['class_roll'];
-  $year=$row['year'];
-  $address=$row['address'];
-  
-  }
+session_start();
+include('connection.php');
+$sql = "select email_id,stream,enroll_id,section,mobile_number,univ_roll,reg_id,name,semester,class_roll,address,year from student where username='" . $_SESSION['username'] . "'";
+$res = mysqli_query($con, $sql);
+if (!$res) {
+    echo "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+    exit;
+} else {
+    $row = mysqli_fetch_assoc($res);
+    $name = $row['name'];
+    $email = $row['email_id'];
+    $univ_id = $row['univ_roll'];
+    $section = $row['section'];
+    $stream = $row['stream'];
+    $enroll_id = $row['enroll_id'];
+    $mobile_number = $row['mobile_number'];
+    $reg_id = $row['reg_id'];
+    $semester = $row['semester'];
+    $class_roll = $row['class_roll'];
+    $year = $row['year'];
+    $address = $row['address'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,10 +30,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="style_display.css">
-        <link rel="stylesheet" type="text/css" href="navbar_style.css">
+        <link rel="stylesheet" type="text/css" href="css/style_display.css">
+        <link rel="stylesheet" type="text/css" href="css/navbar_style.css">
     </head>
     <body id = 'student_info' class="w3-light-grey">
 
@@ -45,21 +41,19 @@
         <div class="w3-top">
             <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
+                <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
                 <div class='navbar-right'>
                     <a href="view_results.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View Results</a>
                     <a href="student_display.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Dashboard</a>
-                    
                     <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
                 </div>
             </div>
 
             <!-- Navbar on small screens -->
-            <div id="navDemo" class="w3-bar-block w3-teal w3-hide w3-hide-large w3-hide-medium w3-large">
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">About</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">Log In</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">Contact Us</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">Admin Corner</a>
+            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+                <a href="view_results.php" class="w3-bar-item w3-button w3-padding-large">View Results</a>
+                <a href="student_display.php" class="w3-bar-item w3-button w3-padding-large">Dashboard</a>
+                <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Log Out</a>
             </div>
         </div>
 
@@ -151,32 +145,27 @@
                                     <th>Teachers</th>
                                     <th>Teacher Evaluation</th>
                                     <th>Contact</th>
-									<th>View Attendance</th>
+                                    <th>View Attendance</th>
                                 </tr>
                                 <?php
-									$sql2="select t.username,t.name,c.course_name,c.course_id from student s join courses c on s.semester=c.semester and c.department_id=s.stream join teacher t on c.teacher_id=t.username where s.username='".$_SESSION['username']."'";
-									$result2=mysqli_query($con,$sql2);
-									if(!$result2)
-									{
-										echo mysqli_error($con);
-										exit();
-									}
-									else
-									{
-										while($row=mysqli_fetch_assoc($result2))
-										{
-											echo "<tr>
-										<td>".$row['course_id']."</td>
-										<td>".$row['course_name']."</td>
-										<td>".$row['name']."</td>
-										<td><button class='w3-button w3-teal' id='".$row['username']."' onclick='eval(this.id)'>Evaluate</button></td>
-										<td><button class='w3-button w3-teal' id='".$row['username']."' onclick='inbox(this.id)'>Message</button></td>
-										<td><button class='w3-button w3-teal'><a href='uploads/".$stream."_".$semester."_".$section."_".$row['course_id'].".xlsx' download>Attedance</a></button></td>
-										</tr>";
-										}
-										
-									}
-								?>
+                                $sql2 = "select t.username,t.name,c.course_name,c.course_id from student s join courses c on s.semester=c.semester and c.department_id=s.stream join teacher t on c.teacher_id=t.username where s.username='" . $_SESSION['username'] . "'";
+                                $result2 = mysqli_query($con, $sql2);
+                                if (!$result2) {
+                                    echo mysqli_error($con);
+                                    exit();
+                                } else {
+                                    while ($row = mysqli_fetch_assoc($result2)) {
+                                        echo "<tr>
+                                                    <td>" . $row['course_id'] . "</td>
+                                                    <td>" . $row['course_name'] . "</td>
+                                                    <td>" . $row['name'] . "</td>
+                                                    <td><button class='w3-button w3-teal' id='" . $row['username'] . "' onclick='eval(this.id)'>Evaluate</button></td>
+                                                    <td><button class='w3-button w3-teal' id='" . $row['username'] . "' onclick='inbox(this.id)'>Message</button></td>
+                                                    <td><button class='w3-button w3-teal'><a href='uploads/" . $stream . "_" . $semester . "_" . $section . "_" . $row['course_id'] . ".xlsx' download style='text-decoration: none'>Attedance</a></button></td>
+                                                </tr>";
+                                    }
+                                }
+                                ?>
                             </table>
                         </div><br>
                     </div>
@@ -184,8 +173,7 @@
                         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Activities</h2>
                         <div class="w3-container">
                             <table><tr>
-                                <td style="padding-right: 100px;"><button class='w3-button w3-teal' onclick='view()'>View Examination Results</button></td>
-                               
+                                    <td style="padding-right: 100px;"><button class='w3-button w3-teal' onclick='view()'>View Examination Results</button></td>
                             </table>
                             <hr>
                         </div>
@@ -210,17 +198,17 @@
                     x.className = x.className.replace(" w3-show", "");
                 }
             }
-			function inbox(id){
-				var q=id;
-				window.location.href="inbox.php?q="+q;
-			}
-			function eval(id){
-				var q=id;
-				window.location.href="teacher_evaluation.php?q="+q;
-			}
-			function view(){
-				window.location.href="view_results.php";
-			}
+            function inbox(id) {
+                var q = id;
+                window.location.href = "inbox.php?q=" + q;
+            }
+            function eval(id) {
+                var q = id;
+                window.location.href = "teacher_evaluation.php?q=" + q;
+            }
+            function view() {
+                window.location.href = "view_results.php";
+            }
         </script>
     </body>
 </html>

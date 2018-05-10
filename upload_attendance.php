@@ -27,6 +27,7 @@ include('connection.php');
 		include 'PHPExcel/IOFactory.php';
 
 		// This is the file path to be uploaded.
+		header("location:success.php");
 		
 
 ?>

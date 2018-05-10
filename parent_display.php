@@ -44,9 +44,10 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="style_display.css">
+    <link rel="stylesheet" type="text/css" href="css/style_display.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar_style.css">
     
     <body id = 'student_info' class="w3-light-grey">
         
@@ -54,21 +55,19 @@ else
         <div class="w3-top">
             <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
+                <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
                 <div class='navbar-right'>
                     <a href="parent_display.php#course" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View Results</a>
                     <a href="parent_display.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Dashboard</a>
-                    
                     <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
                 </div>
             </div>
 
         <!-- Navbar on small screens -->
             <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">About</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">Log In</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">Contact Us</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding-large">Admin Corner</a>
+                <a href="parent_display.php#course" class="w3-bar-item w3-button w3-padding-large">View Results</a>
+                <a href="parent_display.php" class="w3-bar-item w3-button w3-padding-large">Dashboard</a>
+                <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Log Out</a>
             </div>
         </div>
         
@@ -158,11 +157,7 @@ else
                         <tr>
                             <td>Name</td>
                             <td><?php echo $name?></td>
-                        </tr>
-                        <tr>
-                            <td>Relation with student</td>
-                            <td><?php echo $stream?></td>
-                        </tr>                        
+                        </tr>                      
                         <tr>
                             <td>Mobile No.</td>
                             <td><?php echo $phone_no?></td>
@@ -205,7 +200,7 @@ else
 										<td>".$row['name']."</td>
 										<td><button class='w3-button w3-teal' id='".$row['course_id']."' onclick='view(this.id)'>View Results</button></td>
 										<td><button class='w3-button w3-teal' id='".$row['username']."' onclick='inbox(this.id)'>Message</button></td>
-										<td><button class='w3-button w3-teal'><a href='uploads/".$stream."_".$semester."_".$section."_".$row['course_id'].".xlsx' download>Attedance</a></button></td>
+										<td><button class='w3-button w3-teal'><a href='uploads/".$stream."_".$semester."_".$section."_".$row['course_id'].".xlsx' download style='text-decoration: none'>Attedance</a></button></td>
 										</tr>";
 										}
 										

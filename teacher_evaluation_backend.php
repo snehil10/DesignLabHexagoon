@@ -33,12 +33,11 @@ if(isset($_POST['submit']))
 			$result2=mysqli_query($con,$sql2);
 			if(!$result2)
 			{
-				echo mysqli_error($con);
-				exit();
+				header("location:failure.php");
 			}
 			else
 			{
-				echo "yes";
+				header("location:success.php");
 			}
 				
 		}

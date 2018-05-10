@@ -3,15 +3,14 @@ session_start();
 include('connection.php');
 if(isset($_POST['submit']))
 {
-	$table_name=$_POST["option"];
 	$username=$_POST["username"];
 	$password=$_POST["psw"];
-	$sql="select username,password from ".$table_name." where username='$username' && password='$password'";
+	$sql="select username,password from admin where username='$username' && password='$password'";
 	$result=mysqli_query($con , $sql);
 	if(!$result)
 	{
-		$_SESSION['loginstatus']=0;
-		header('location:index.php');
+		echo "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+		exit;
 	}
 	if(mysqli_num_rows($result)>0)
 	{
@@ -23,12 +22,7 @@ if(isset($_POST['submit']))
 		$cookie_value=$username;
 		setcookie($cookie_name, $cookie_value, time() + (86400 * 365), "/");
 		}
-		if($table_name=='student')
-			header('location:student_display.php');
-		if($table_name=='teacher')
-			header('location:teacher_display.php');
-		if($table_name=='parents')
-			header('location:parent_display.php');
+		header('location:admin_uploadstudents.php');
 	}
 	if(mysqli_num_rows($result)==0)
 	{
