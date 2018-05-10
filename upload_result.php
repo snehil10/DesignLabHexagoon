@@ -45,8 +45,8 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 		for($i=2;$i<=$arrayCount;$i++)
 		{
 			$student_id=trim($allDataInSheet[$i]["A"]);
-			$exam_type=trim($allDataInSheet[$i]["A"]);
-			$marks=trim($allDataInSheet[$i]["A"]);
+			$exam_type=trim($allDataInSheet[$i]["B"]);
+			$marks=trim($allDataInSheet[$i]["C"]);
 			$sql="select * from $table_name where student_id='".$student_id."' and exam_type='".$exam_type."'";
 			$result=mysqli_query(con,$sql);
 			if(!$result)
