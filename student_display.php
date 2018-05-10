@@ -1,27 +1,31 @@
 
 <?php
-session_start();
-include('connection.php');
-$sql = "select email_id,stream,enroll_id,section,ph_no,univ_roll,reg_id,name,semester,class_roll,address,year from student where username='" . $_SESSION['username'] . "'";
-$res = mysqli_query($con, $sql);
-if (!$res) {
-    echo "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
-    exit;
-} else {
-    $row = mysqli_fetch_assoc($res);
-    $name = $row['name'];
-    $email = $row['email_id'];
-    $univ_id = $row['univ_roll'];
-    $section = $row['section'];
-    $stream = $row['stream'];
-    $enroll_id = $row['enroll_id'];
-    $ph_no = $row['ph_no'];
-    $reg_id = $row['reg_id'];
-    $semester = $row['semester'];
-    $class_roll = $row['class_roll'];
-    $year = $row['year'];
-    $address = $row['address'];
-}
+  session_start();
+  include('connection.php');
+  $sql="select email_id,stream,enroll_id,section,mobile_number,univ_roll,reg_id,name,semester,class_roll,address,year from student where username='".$_SESSION['username']."'";
+  $res=mysqli_query($con,$sql);
+  if(!$res)
+  {
+  echo "Could not successfully run query ($sql) from DB: " . mysqli_error($con);
+  exit;
+  }
+  else
+  {
+  $row=mysqli_fetch_assoc($res);
+  $name=$row['name'];
+  $email=$row['email_id'];
+  $univ_id=$row['univ_roll'];
+  $section=$row['section'];
+  $stream=$row['stream'];
+  $enroll_id=$row['enroll_id'];
+  $mobile_number=$row['mobile_number'];
+  $reg_id=$row['reg_id'];
+  $semester=$row['semester'];
+  $class_roll=$row['class_roll'];
+  $year=$row['year'];
+  $address=$row['address'];
+  
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +47,9 @@ if (!$res) {
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">PTSIS</a>
                 <div class='navbar-right'>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View Results</a>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inbox</a>
-                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact Teacher</a>
+                    <a href="view_results.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View Results</a>
+                    <a href="student_display.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Dashboard</a>
+                    
                     <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
                 </div>
             </div>
@@ -70,14 +74,14 @@ if (!$res) {
 
                     <div class="w3-white w3-text-grey w3-card-4" style='width: 300px'>
                         <div class="w3-display-container">
-                            <img src="SUBHAM2.jpg" style="width:100%;" alt="Avatar">
+                            <img src="img_avatar.png" style="width:100%;" alt="Avatar">
                         </div>
 
                         <div class="w3-container">
                             <p><h2><?php echo $name ?></h2></p>
                             <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $email ?></p>
                             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $address ?></p>
-                            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $ph_no ?></p>
+                            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $mobile_number ?></p>
                             <a href="edit_student.php"><p><i class="fa fa-pencil-square-o fa-fw w3-margin-right w3-large w3-text-teal"></i>Edit Your Info</p></a>
                             <hr>
                         </div>
@@ -129,7 +133,7 @@ if (!$res) {
                                 </tr>
                                 <tr>
                                     <td>Mobile No.</td>
-                                    <td><?php echo $ph_no ?></td>
+                                    <td><?php echo $mobile_number ?></td>
                                 </tr>
                             </table>
 
@@ -147,25 +151,32 @@ if (!$res) {
                                     <th>Teachers</th>
                                     <th>Teacher Evaluation</th>
                                     <th>Contact</th>
+									<th>View Attendance</th>
                                 </tr>
                                 <?php
-                                $sql2 = "select t.username,t.name,c.course_name,c.course_id from student s join courses c on s.semester=c.semester and c.department_id=s.stream join teacher t on c.teacher_id=t.username where s.username='" . $_SESSION['username'] . "'";
-                                $result2 = mysqli_query($con, $sql2);
-                                if (!$result2) {
-                                    echo mysqli_error($con);
-                                    exit();
-                                } else {
-                                    while ($row = mysqli_fetch_assoc($result2)) {
-                                        echo "<tr>
-										<td>" . $row['course_id'] . "</td>
-										<td>" . $row['course_name'] . "</td>
-										<td>" . $row['name'] . "</td>
-										<td><button class='w3-button w3-teal' id='" . $row['username'] . "' onclick='eval(this.id)'>Evaluate</button></td>
-										<td><button class='w3-button w3-teal' id='" . $row['username'] . "' onclick='inbox(this.id)'>Message</button></td>
+									$sql2="select t.username,t.name,c.course_name,c.course_id from student s join courses c on s.semester=c.semester and c.department_id=s.stream join teacher t on c.teacher_id=t.username where s.username='".$_SESSION['username']."'";
+									$result2=mysqli_query($con,$sql2);
+									if(!$result2)
+									{
+										echo mysqli_error($con);
+										exit();
+									}
+									else
+									{
+										while($row=mysqli_fetch_assoc($result2))
+										{
+											echo "<tr>
+										<td>".$row['course_id']."</td>
+										<td>".$row['course_name']."</td>
+										<td>".$row['name']."</td>
+										<td><button class='w3-button w3-teal' id='".$row['username']."' onclick='eval(this.id)'>Evaluate</button></td>
+										<td><button class='w3-button w3-teal' id='".$row['username']."' onclick='inbox(this.id)'>Message</button></td>
+										<td><button class='w3-button w3-teal'><a href='uploads/".$stream."_".$semester."_".$section."_".$row['course_id'].".xlsx' download>Attedance</a></button></td>
 										</tr>";
-                                    }
-                                }
-                                ?>
+										}
+										
+									}
+								?>
                             </table>
                         </div><br>
                     </div>
@@ -173,8 +184,8 @@ if (!$res) {
                         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Activities</h2>
                         <div class="w3-container">
                             <table><tr>
-                                <td style="padding-right: 100px;"><button class='w3-button w3-teal'>View Examination Results</button></td>
-                                <td style="padding-left: 100px;"><button class='w3-button w3-teal'>Online Polls</button></td>
+                                <td style="padding-right: 100px;"><button class='w3-button w3-teal' onclick='view()'>View Examination Results</button></td>
+                               
                             </table>
                             <hr>
                         </div>
@@ -199,14 +210,17 @@ if (!$res) {
                     x.className = x.className.replace(" w3-show", "");
                 }
             }
-            function inbox(id) {
-                var q = id;
-                window.location.href = "inbox.php?q=" + q;
-            }
-            function eval(id) {
-                var q = id;
-                window.location.href = "teacher_evaluation.php?q=" + q;
-            }
+			function inbox(id){
+				var q=id;
+				window.location.href="inbox.php?q="+q;
+			}
+			function eval(id){
+				var q=id;
+				window.location.href="teacher_evaluation.php?q="+q;
+			}
+			function view(){
+				window.location.href="view_results.php";
+			}
         </script>
     </body>
 </html>
