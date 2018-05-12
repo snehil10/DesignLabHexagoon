@@ -15,11 +15,10 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 
 		if(file_exists("uploads/".$_FILES["fileToUpload"]["name"]))
 		{
-			echo $_FILES["fileToUpload"]["name"]."already exits";
-			$img= $_FILES["fileToUpload"]["name"];
+			unlink("uploads/".$department."_".$semester."_".$section."_".$course_id.".xlsx");
 			
 		}
-		else{
+		
 			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],"uploads/".$_FILES["fileToUpload"]["name"]);
 			echo "stored in:"."Images/".$_FILES["fileToUpload"]["name"];
 			$img= $_FILES["fileToUpload"]["name"];
@@ -45,13 +44,14 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 		for($i=2;$i<=$arrayCount;$i++)
 		{
 			$student_id=trim($allDataInSheet[$i]["A"]);
-			$exam_type=trim($allDataInSheet[$i]["A"]);
-			$marks=trim($allDataInSheet[$i]["A"]);
+			$exam_type=trim($allDataInSheet[$i]["B"]);
+			$marks=trim($allDataInSheet[$i]["C"]);
 			$sql="select * from $table_name where student_id='".$student_id."' and exam_type='".$exam_type."'";
-			$result=mysqli_query(con,$sql);
+			$result=mysqli_query($con,$sql);
 			if(!$result)
 			{
-				header("location:failure.php");
+				echo mysqli_error($con);
+				die();
 			}
 			else
 			{
@@ -61,7 +61,8 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 					$result2=mysqli_query($con,$sql2);
 					if(!$result2)
 					{
-						header("location:failure.php");
+						echo mysqli_error($con);
+						die();
 					}
 					else
 					{
@@ -74,7 +75,8 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 					$result2=mysqli_query($con,$sql2);
 					if(!$result2)
 					{
-						header("location:failure.php");
+						echo mysqli_error($con);
+						die();
 					}
 					else
 					{
@@ -82,6 +84,6 @@ $pro_img = explode(".",$_FILES["fileToUpload"]["tmp_name"]);
 					}
 				}
 			}
-		}
+		
 	}
 ?>

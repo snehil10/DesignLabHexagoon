@@ -46,7 +46,7 @@ $course_id = $_GET['q'];
             <div class="col-lg-6 w3-card">
                 <header><h3 class="text-center">Upload Attendance</h3></header>
                 <hr>
-                <form class="w3-container" action="upload_attendance.php" method="post">
+                <form class="w3-container" action="upload_attendance.php" method="post" enctype="multipart/form-data">
                     <label><b> Department:  </b> </label>
                     <select class = 'w3-select' name="department">
                         <option value="" disabled selected>Choose your option</option>
@@ -88,14 +88,14 @@ $course_id = $_GET['q'];
                         <option value="C">C</option>
                     </select><br><br>                   
                     <label><b>Upload File: </b></label>
-                    <input type="file"></input><br>
+                    <input type="file" name="fileToUpload"></input><br>
                     <center><button type="submit" name="submit" class="w3-button w3-teal">Upload</button></center> <br><br>
                 </form>
             </div>
             <div class="col-lg-6 w3-card">
                 <header><h3 class="text-center">Upload Results</h3></header>
                 <hr>
-                <form class="w3-container" action="upload_result.php" method="post">
+                <form class="w3-container" action="upload_result.php" method="post" enctype="multipart/form-data" >
                     <label><b> Department:  </b> </label>
                     <select class = 'w3-select' name="department" required>
                         <option value="" disabled selected>Choose your option</option>
@@ -127,7 +127,7 @@ $course_id = $_GET['q'];
                     </select><br><br>
 
                     <label><b> Course ID:  </b> </label><br/>
-                    <input type="text" name="course" <?php echo"value='" . $course_id . "'"; ?> class="w3-input" disabled/>
+                    <input type="text" name="course" <?php echo"value='" . $course_id . "'"; ?> class="w3-input" />
                     <br><br>
 
                     <label><b> Exam Type:  </b> </label>
@@ -141,7 +141,7 @@ $course_id = $_GET['q'];
                     </select><br><br>
 
                     <label><b>Upload File: </b></label>
-                    <input type="file"></input>
+                    <input type="file" name="fileToUpload"></input>
                     <center><button type="submit" class="w3-button w3-teal">Upload</button></center> <br><br>
                 </form>
             </div>

@@ -26,7 +26,6 @@ if(isset($_POST['submit']))
 		exit();
 	}
 	else{
-		echo "yes";
 		if($message!="")
 		{
 			$sql2="insert into message (sender_id,receiver_id,message_content,message_type,status) values ('".$_SESSION['username']."','$teacher_id','$message','evaluation',0)";
@@ -41,6 +40,7 @@ if(isset($_POST['submit']))
 			}
 				
 		}
+		header("location:success.php");
 	}
 	
 	

@@ -127,7 +127,7 @@ if (isset($_COOKIE['user'])) {
                 <div class="w3-twothird">
                     <h1>Talk to Teachers Directly</h1>
                     <h5 class="w3-padding-32">We know how difficult it is to know about your child's performance in college. Therefore we bring you a website to do so. Now you can 
-                        talk to your child's teachers while comfortably resting on your ikea.</h5>
+                        talk to your child's teachers while comfortably resting on your idea.</h5>
                     <hr>
                     <p class="w3-text-grey">Don't let the distance between you and your child hamper your concern for their studies.
                         Keep close eyes on the performance of your child. All you have to do is log in to the system using the username and password
@@ -169,10 +169,10 @@ if (isset($_COOKIE['user'])) {
                     <div class="row">
                         <p class="col-sm-4">Lead Developer - Snehil Santhalia</p>
                         <p class="col-sm-4">Developer I - Shubham Saurav</p>
-                        <p class="col-sm-4">Developer II - Shubham Gupta</p>
+                        <p class="col-sm-4">Developer II - Shubham Kumar</p>
                     </div>
                     <div class="row">
-                        <p class="col-sm-6">Quality Assuarance Manager - Shubham Kumar</p>
+                        <p class="col-sm-6">Quality Assuarance Manager - Shubham</p>
                         <p class="col-sm-6">Quality Assuarance Engineer - Subham Sah</p>
                     </div>
                 </div>
