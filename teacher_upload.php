@@ -79,7 +79,7 @@ $course_id = $_GET['q'];
                     </select><br><br>
 
                     <label><b> Course:  </b> </label><br>
-                    <input type="text" name="course" disabled class="w3-input"><br>
+                    <input type="text" name="course" <?php echo"value='" . $course_id . "'"; ?> class="w3-input"><br>
                     <label><b> Section:  </b> </label>
                     <select class = 'w3-select' name="section">
                         <option value="" disabled selected>Choose your option</option>
